@@ -1,0 +1,6 @@
+{
+  "name": "Loot Your Look",
+  "description": "Production-ready clothing-only marketplace connecting Indian fashion shoppers with approved clothing wholesalers and admin controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

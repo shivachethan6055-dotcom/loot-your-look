@@ -1,0 +1,911 @@
+# BLACKBOX AI MASTER PROMPT — LOOT YOUR LOOK
+## Production-Ready Clothing-Only Online Marketplace
+
+**Website Name:** Loot Your Look  
+**Tagline:** Your Style. Your Choice. Your Look.  
+**Business Type:** Real online clothing marketplace connecting customers with approved clothing wholesalers in India.  
+**Purpose:** Build a complete, secure, mobile-friendly website ready for real business operations and public launch. This is NOT a college project or a demo.
+
+---
+
+# 1. YOUR ROLE
+
+Act as a senior full-stack developer, UI/UX designer, database architect, security engineer and deployment engineer.
+
+Build a complete, functional, production-oriented website called **Loot Your Look**. I am a beginner, so explain important steps in simple language and provide working code rather than just sample designs.
+
+Do not create only a frontend template. Build the frontend, backend, database, authentication, business logic, API integrations, testing and deployment configuration.
+
+If a feature requires an external account, API key, payment gateway credentials or hosting account, explain how I can configure it. Never invent credentials or claim that an integration is working until it has been tested.
+
+# 2. STRICT BUSINESS RULE: CLOTHING ONLY
+
+**Loot Your Look must sell clothes and nothing else.**
+
+### Allowed products
+
+- Men's clothing: shirts, T-shirts, jeans, trousers, jackets, hoodies, sweaters, kurtas and ethnic wear.
+- Women's clothing: dresses, tops, skirts, jeans, trousers, sarees, kurtis, leggings and ethnic wear.
+- Kids' clothing: shirts, T-shirts, dresses, pants, school clothing and ethnic wear.
+- Clothing types: casual wear, formal wear, traditional wear, party wear, sportswear and seasonal clothing.
+
+### Prohibited products
+
+Never allow listings for:
+
+- Shoes, footwear, slippers or sandals.
+- Bags, handbags, purses or wallets.
+- Jewellery, watches or fashion accessories.
+- Cosmetics, skincare or beauty products.
+- Electronics, mobile phones or gadgets.
+- Home products, furniture, toys, groceries or unrelated merchandise.
+- Any product that is not clothing.
+
+Enforce this rule in the customer interface, wholesaler interface, backend APIs, database design, product import process and admin portal. Hiding prohibited categories in the frontend is not sufficient.
+
+If a wholesaler attempts to submit a prohibited product, reject the submission and show a clear validation message. Admins must not be able to publish a prohibited product through ordinary product-management screens.
+
+# 3. REQUIRED TECHNOLOGY STACK
+
+Use the following technologies consistently.
+
+### Frontend
+- React with JavaScript.
+- HTML5 and CSS3.
+- Bootstrap 5 and Bootstrap Icons.
+- React Router for navigation.
+- Axios or an equivalent HTTP client for API calls.
+- Chart.js for admin and wholesaler analytics where appropriate.
+
+### Backend
+- Java 21.
+- Spring Boot 3.
+- Maven.
+- Spring Web for REST APIs.
+- Spring Security for authentication and authorization.
+- Spring Data JPA and Hibernate.
+- Bean Validation for request validation.
+- Spring Boot Actuator for operational health checks.
+
+### Database
+- MySQL 8.
+- Flyway for database schema migrations.
+- Proper foreign keys, indexes, unique constraints and transaction handling.
+
+### Additional services
+- Razorpay or another supported Indian payment gateway for online payments, subject to account approval and availability.
+- Cash on Delivery only if enabled by the business.
+- Secure image storage using a suitable cloud object-storage service.
+- Email service for order notifications and account-related messages.
+- A supported hosting provider for the backend, frontend and database.
+
+Do not use Java 21 for the frontend. Do not replace the requested Java backend with Node.js or PHP.
+
+Use compatible, stable dependency versions and include the required configuration files.
+
+# 4. ONE WEBSITE WITH THREE SEPARATE PORTALS
+
+Build one integrated website with three role-based portals:
+
+1. Customer Portal.
+2. Wholesaler Portal.
+3. Admin Portal.
+
+Use a shared product catalog and order system. Users must see only the pages and actions permitted by their roles.
+
+Create separate login experiences with a clear layout for each role:
+
+- Customer Login.
+- Wholesaler Login.
+- Admin Login.
+
+The admin portal must not be publicly accessible through customer or wholesaler permissions.
+
+Example routes:
+
+- `/` — Public home page.
+- `/shop` — Clothing catalog.
+- `/product/:id` — Product details.
+- `/login` — Customer login.
+- `/register` — Customer registration.
+- `/customer/*` — Customer dashboard.
+- `/wholesaler/login` — Wholesaler login.
+- `/wholesaler/register` — Wholesaler registration.
+- `/wholesaler/*` — Wholesaler dashboard.
+- `/admin/login` — Admin login.
+- `/admin/*` — Admin dashboard.
+
+Protect all private routes in both the frontend and backend.
+
+# 5. PUBLIC WEBSITE AND CUSTOMER STOREFRONT
+
+Create a professional clothing-shopping website that works on mobile phones, tablets and computers.
+
+### Home page
+
+Include:
+
+- Professional navigation bar and logo.
+- Search bar.
+- Clothing category navigation.
+- Hero banner with the tagline “Your Style. Your Choice. Your Look.”
+- New arrivals.
+- Trending clothing.
+- Men's clothing, women's clothing and kids' clothing sections.
+- Featured clothing from approved wholesalers.
+- Special offers and discounts.
+- Customer benefits.
+- Delivery and return information.
+- Footer containing Contact Us, About Us, Privacy Policy, Terms and Conditions, Shipping Policy and Return/Refund Policy.
+
+All homepage products and category links must lead to real, functioning catalog pages.
+
+### Clothing catalog
+
+Provide:
+
+- Search by product name, brand or clothing type.
+- Filter by men's, women's or kids' clothing.
+- Filter by category, size, colour, fabric, brand and price range.
+- Sort by price, newest arrivals and popularity.
+- Pagination or efficient product loading.
+- Available-stock indicators.
+- Clear prices in Indian rupees (INR).
+- Responsive product cards with images and product details.
+
+Only approved and available clothing listings may appear publicly.
+
+### Product details page
+
+Display:
+
+- Product name and description.
+- Multiple product images.
+- Clothing category and type.
+- Fabric and material details.
+- Size options and size chart.
+- Colour options.
+- Price and any valid discount.
+- Stock availability for each size/colour variant.
+- Delivery availability or estimated delivery information where supported.
+- Seller information.
+- Shipping, return and refund terms.
+- Quantity selector.
+- Add to Cart button.
+- Buy Now button.
+- Wishlist option.
+
+Require customers to select the necessary size, colour and quantity before adding the product to the cart.
+
+# 6. CUSTOMER ACCOUNT AND AUTHENTICATION
+
+Implement customer registration, login, logout and account management.
+
+Registration fields:
+
+- Full name.
+- Email address.
+- Phone number.
+- Password.
+- Confirm password.
+- Delivery address information as appropriate.
+
+Requirements:
+
+- Email and password authentication.
+- Secure password hashing using Spring Security's password encoder.
+- Email verification if configured with a real email provider.
+- Forgot-password and password-reset flow.
+- Optional Google sign-in only if correctly configured.
+- Session expiration and secure logout.
+- Server-side validation.
+- Protection against brute-force login attempts.
+- Duplicate email prevention.
+- Clear validation messages.
+
+Do not store plain-text passwords or expose passwords in API responses.
+
+Customers must be able to manage their profile, addresses, order history and account details.
+
+# 7. CUSTOMER SHOPPING FEATURES
+
+Implement a fully functional shopping flow.
+
+### Wishlist
+Customers can add and remove clothing products from their wishlist.
+
+### Shopping cart
+- Add clothing products and selected variants.
+- Update quantities.
+- Remove items.
+- Validate current price and stock on the backend.
+- Calculate item totals, discounts, delivery charges and final totals.
+- Persist the cart for logged-in users.
+- Handle out-of-stock products safely.
+
+### Checkout
+Collect and confirm:
+
+- Customer contact details.
+- Shipping address.
+- Selected delivery method where available.
+- Order summary.
+- Applicable discounts.
+- Delivery charges.
+- Payment method.
+- Final payable amount.
+
+Recalculate all prices on the server. Never trust totals sent by the browser.
+
+### Order management
+Customers can:
+
+- Place orders.
+- View order confirmation.
+- View order history.
+- Track order status.
+- Request cancellation when permitted.
+- Request a return or refund according to the published policy.
+- View payment and refund status.
+
+Use clear order statuses, for example:
+
+`PENDING_PAYMENT`, `CONFIRMED`, `PROCESSING`, `SHIPPED`, `DELIVERED`, `CANCELLED`, `RETURN_REQUESTED`, `RETURNED`, `REFUND_PENDING`, `REFUNDED`.
+
+Use an appropriate status-transition workflow so invalid transitions are rejected.
+
+# 8. WHOLESALER REGISTRATION AND PORTAL
+
+Wholesalers supply clothing products for sale through Loot Your Look.
+
+### Wholesaler registration
+
+Collect:
+
+- Business or shop name.
+- Contact person's name.
+- Email address.
+- Phone number.
+- Business address.
+- GSTIN, where applicable.
+- Relevant business documents, where required.
+- Bank or settlement details through an appropriately secured workflow when needed.
+
+Collect only information necessary for business operations. Restrict access to sensitive business and settlement information.
+
+Every new wholesaler must have a status such as:
+
+`PENDING`, `APPROVED`, `REJECTED`, `SUSPENDED`.
+
+A wholesaler must not sell products on the marketplace until the admin approves the account.
+
+### Wholesaler dashboard
+
+Include:
+
+- Total listed clothing products.
+- Products awaiting approval.
+- Approved products.
+- Rejected products.
+- Current stock.
+- New orders.
+- Orders awaiting fulfillment.
+- Shipped and delivered orders.
+- Sales summaries.
+- Returns and cancellations.
+- Settlement and payout summaries.
+- Notifications from the admin.
+
+### Clothing product management
+
+Wholesalers can submit and manage clothing listings with:
+
+- Product name.
+- Clothing category.
+- Description.
+- Brand, where applicable.
+- Fabric and material.
+- Size options.
+- Colour options.
+- SKU or product identifier.
+- Images.
+- Price.
+- Available stock for each variant.
+- Applicable tax information.
+- Wholesale or supplier cost information, restricted to authorized users.
+
+Only clothing categories must be available for product submission.
+
+A new product must remain pending until approved by the admin. Wholesalers may edit listings and update stock, but material changes must trigger reapproval where appropriate.
+
+### Wholesaler order fulfillment
+
+For each assigned order item, the wholesaler can:
+
+- View the relevant order details.
+- Confirm availability.
+- Prepare the clothing items.
+- Mark the order as packed.
+- Enter the courier and tracking information.
+- Mark the order as shipped.
+- View delivery status.
+- Respond to return requests.
+
+Do not expose one wholesaler's private orders, customer data or financial information to another wholesaler.
+
+# 9. ADMIN PORTAL
+
+Create a secure, fully functional admin dashboard.
+
+### Admin overview
+
+Display:
+
+- Total customers.
+- Total registered wholesalers.
+- Pending wholesaler approvals.
+- Total approved clothing products.
+- Pending product approvals.
+- Total orders.
+- Revenue and payment summaries.
+- Refund summaries.
+- Low-stock alerts.
+- Recent orders.
+- Sales charts by date and clothing category.
+
+Financial metrics must use clearly defined calculations. Do not label total order value as net profit.
+
+### Customer management
+
+Admins can:
+
+- View customer accounts.
+- Search and filter customers.
+- Review account status.
+- Suspend or reactivate accounts when justified.
+- Review relevant order information.
+
+### Wholesaler management
+
+Admins can:
+
+- Review applications.
+- Approve or reject applications.
+- Request additional information.
+- Suspend or reactivate approved wholesalers.
+- Review product listings and business information.
+- View relevant sales, order and settlement summaries.
+
+Record important admin actions in an audit log.
+
+### Product and category management
+
+Admins can:
+
+- Review submitted clothing products.
+- Approve or reject listings.
+- Request changes.
+- Update permitted product details.
+- Manage clothing categories and subcategories.
+- Manage product availability and stock visibility.
+- Review reported products.
+
+Do not provide a feature that allows admins to create unrestricted non-clothing categories.
+
+### Order and payment management
+
+Admins can:
+
+- View and search orders.
+- View payment status.
+- Review fulfillment progress.
+- Manage cancellation requests.
+- Review returns and refund requests.
+- Initiate refunds through the payment provider's supported process.
+- View transaction references.
+- Reconcile order totals and payments.
+- Export permitted reports.
+
+Never allow an admin screen to mark a payment as successful without verifying the payment or recording a legitimate, auditable manual reconciliation action.
+
+# 10. MULTI-WHOLESALER CART AND ORDER PROCESSING
+
+A customer may buy clothing from multiple approved wholesalers in one checkout.
+
+Design the order system to support this correctly.
+
+- Create a customer-facing parent order.
+- Create separate seller order records or fulfillment groups for each wholesaler.
+- Associate each order item with the correct wholesaler.
+- Track shipping and fulfillment independently for each wholesaler.
+- Calculate delivery charges and discounts consistently.
+- Preserve a clear customer order summary.
+- Track each seller's gross sales, commissions, refunds and settlement amounts separately.
+- Prevent one wholesaler from accessing another wholesaler's order information.
+
+Use database transactions and appropriate stock reservation logic to prevent overselling.
+
+Define what happens if one seller cannot fulfill their items or one payment fails. Document the business rules and implement them consistently.
+
+# 11. PAYMENTS, COMMISSIONS AND WHOLESALER SETTLEMENTS
+
+Support an Indian payment workflow using a payment provider such as Razorpay, subject to the provider's approval, supported features and account configuration.
+
+### Payment requirements
+
+- Create payment orders on the backend.
+- Use the payment provider's official integration.
+- Verify payment signatures on the backend.
+- Verify webhook signatures.
+- Make webhook processing idempotent.
+- Store transaction references and payment status.
+- Never store card numbers, CVVs or payment secrets.
+- Handle failed, pending, successful and refunded payments.
+- Do not mark an order as paid based only on a frontend success message.
+- Support Cash on Delivery only if the business enables it.
+
+### Business commission and settlements
+
+Build configurable fields for:
+
+- Marketplace commission percentage or fixed fee.
+- Seller payable amount.
+- Payment gateway fees, where known.
+- Applicable taxes and adjustments.
+- Refund adjustments.
+- Settlement status.
+- Settlement reference and date.
+
+Do not assume that the payment gateway automatically supports splitting money among wholesalers. Confirm the selected provider's marketplace or payment-split capabilities before implementing automatic settlements.
+
+If automatic splitting is unavailable, build an auditable settlement ledger and an admin-managed reconciliation workflow consistent with the provider's terms and applicable Indian law.
+
+Do not promise or implement a financial arrangement that has not been verified as supported and compliant.
+
+# 12. DATABASE DESIGN
+
+Use MySQL 8 and Flyway migrations.
+
+Create an appropriate relational database schema with entities such as:
+
+- `users`
+- `roles`
+- `user_addresses`
+- `customer_profiles`
+- `wholesaler_profiles`
+- `wholesaler_documents`
+- `categories`
+- `products`
+- `product_images`
+- `product_variants`
+- `product_inventory`
+- `wishlists`
+- `wishlist_items`
+- `carts`
+- `cart_items`
+- `orders`
+- `seller_orders`
+- `order_items`
+- `payments`
+- `payment_transactions`
+- `shipments`
+- `returns`
+- `refunds`
+- `commission_rules`
+- `seller_settlements`
+- `notifications`
+- `reviews`
+- `audit_logs`
+
+Adjust the entities where necessary to avoid duplication and support proper data integrity.
+
+Requirements:
+
+- Primary keys and foreign keys.
+- Unique constraints where appropriate.
+- Indexes for frequent queries.
+- Creation and update timestamps.
+- Decimal columns for monetary values.
+- Explicit order, payment and approval statuses.
+- Database migrations instead of relying on automatic schema creation in production.
+- Appropriate transaction boundaries.
+- Safe handling of concurrent stock updates.
+- No hardcoded admin passwords or production secrets.
+
+Use sample data only for local development. Never present sample data as actual customer orders or real business revenue.
+
+# 13. BACKEND API AND ARCHITECTURE
+
+Build REST APIs with clear request and response formats.
+
+Suggested API groups:
+
+**Authentication**
+- `/api/auth/register`
+- `/api/auth/login`
+- `/api/auth/logout`
+- `/api/auth/forgot-password`
+- `/api/auth/reset-password`
+
+**Customer**
+- `/api/customer/profile`
+- `/api/customer/addresses`
+- `/api/customer/orders`
+- `/api/customer/wishlist`
+
+**Catalog**
+- `/api/categories`
+- `/api/products`
+- `/api/products/{id}`
+- `/api/products/{id}/reviews`
+
+**Cart and checkout**
+- `/api/cart`
+- `/api/cart/items`
+- `/api/checkout`
+- `/api/orders`
+
+**Wholesaler**
+- `/api/wholesaler/profile`
+- `/api/wholesaler/products`
+- `/api/wholesaler/inventory`
+- `/api/wholesaler/orders`
+- `/api/wholesaler/settlements`
+
+**Admin**
+- `/api/admin/dashboard`
+- `/api/admin/customers`
+- `/api/admin/wholesalers`
+- `/api/admin/products`
+- `/api/admin/orders`
+- `/api/admin/payments`
+- `/api/admin/returns`
+- `/api/admin/reports`
+
+These are proposed routes. Implement the necessary CRUD operations and workflows with proper HTTP methods, request validation, authorization and error handling.
+
+Use a layered backend structure:
+
+- Controller layer.
+- Service layer.
+- Repository layer.
+- Entity and DTO layer.
+- Validation and exception handling.
+- Security configuration.
+- Integration and payment service layer.
+
+Do not put all application logic in a single controller or Java file.
+
+# 14. SECURITY AND PRIVACY
+
+Implement security appropriate for a real e-commerce business.
+
+- Enforce role-based authorization on the server.
+- Validate and sanitize inputs.
+- Use secure password hashing.
+- Protect against SQL injection.
+- Configure CORS for the actual production frontend domain.
+- Use HTTPS in production.
+- Secure cookies and session handling or use a carefully implemented token strategy.
+- Protect against CSRF where applicable.
+- Apply rate limiting to sensitive endpoints.
+- Validate uploaded image types and file sizes.
+- Restrict file upload permissions.
+- Avoid exposing internal exception details.
+- Keep API keys and secrets in environment variables or a suitable secrets manager.
+- Never commit real credentials to source control.
+- Restrict admin creation to a secure setup process.
+- Record important admin and financial actions in audit logs.
+- Protect sensitive customer, wholesaler and settlement data.
+- Configure database backups and test restoration.
+
+Use secure defaults. Do not create a universal default admin account with a public password.
+
+# 15. PRODUCT IMAGES AND FILE STORAGE
+
+Use suitable cloud object storage for production product images and documents.
+
+Requirements:
+
+- Validate file type and size.
+- Generate safe unique object names.
+- Prevent executable uploads.
+- Restrict document access.
+- Avoid storing large image binaries directly in database rows unless there is a justified reason.
+- Save image references and metadata in MySQL.
+- Support multiple images per clothing product.
+- Provide upload progress and clear error messages.
+
+Do not rely on a local development folder for permanent production image storage.
+
+# 16. DESIGN AND USER EXPERIENCE
+
+Use a modern, stylish fashion-commerce design.
+
+Suggested visual direction:
+
+- Clean white or light neutral backgrounds.
+- Black typography.
+- Carefully selected accent colours.
+- Large, high-quality clothing photography.
+- Clear category navigation.
+- Consistent buttons and form elements.
+- Professional product cards.
+- Responsive layouts.
+- Readable fonts and accessible colour contrast.
+- Loading states, empty states and helpful error messages.
+- Confirmation messages for important actions.
+
+Build a responsive mobile navigation menu and accessible forms.
+
+Do not use fake buttons, dead links, nonfunctional filters or decorative dashboards that are disconnected from the backend.
+
+# 17. SEARCH, SEO AND PERFORMANCE
+
+Implement:
+
+- Search and pagination on the backend.
+- Efficient database queries.
+- Product image optimization.
+- Appropriate caching where safe.
+- Metadata and descriptive page titles.
+- SEO-friendly public product URLs where practical.
+- Sitemap and robots configuration.
+- Open Graph metadata.
+- Structured product data where appropriate.
+- Accessible page headings and image alt text.
+
+Private account, wholesaler and admin pages must not expose private data to search engines.
+
+# 18. NOTIFICATIONS AND CUSTOMER SUPPORT
+
+Implement an extensible notification system.
+
+Notifications may include:
+
+- Account registration and verification.
+- Order confirmation.
+- Payment confirmation or failure.
+- Order shipment and tracking.
+- Cancellation.
+- Return and refund updates.
+- Wholesaler approval or rejection.
+- Product approval or rejection.
+- Settlement status.
+
+Use a real email provider for production email. If SMS or WhatsApp notifications are added later, explain the provider, account setup, template requirements and charges.
+
+Create a Contact Us page with a working support form and appropriate validation. Do not invent a real business address, support number or email address.
+
+# 19. POLICIES AND BUSINESS READINESS FOR INDIA
+
+Prepare editable pages for:
+
+- Terms and Conditions.
+- Privacy Policy.
+- Shipping and Delivery Policy.
+- Return, Exchange and Refund Policy.
+- Cancellation Policy.
+- Contact and Grievance Information, where applicable.
+
+Clearly explain the marketplace's relationship with customers and wholesalers, delivery responsibilities, commission arrangements and refund process.
+
+Make tax settings configurable and obtain qualified advice about GST, invoicing, consumer protection, privacy, marketplace obligations and payment arrangements before launch.
+
+Do not claim that the website is legally compliant merely because these pages exist. Do not invent GST registrations, legal approvals or business credentials.
+
+# 20. TESTING REQUIREMENTS
+
+Write automated tests and provide manual testing instructions.
+
+Test at least the following:
+
+### Clothing-only enforcement
+- A valid shirt listing is accepted.
+- A valid dress listing is accepted.
+- A footwear listing is rejected.
+- A jewellery listing is rejected.
+- An electronics listing is rejected.
+- Attempts to bypass frontend validation through direct API calls are rejected.
+- Unapproved products never appear in the public catalog.
+
+### Authentication and permissions
+- Customers cannot access admin APIs.
+- Wholesalers cannot access other wholesalers' data.
+- Unapproved wholesalers cannot publish products.
+- Unauthenticated users cannot access protected account data.
+- Admin access is properly restricted.
+
+### Shopping and payments
+- Cart totals are recalculated on the server.
+- Invalid sizes and variants are rejected.
+- Out-of-stock items cannot be purchased.
+- Concurrent orders cannot oversell inventory.
+- Failed payments do not become successful orders.
+- Payment webhooks are signature-verified and idempotent.
+- Refunds and cancellations update the correct records.
+
+### Orders and settlements
+- Multi-wholesaler orders are separated correctly.
+- Each wholesaler can fulfill only their own items.
+- Order status transitions are validated.
+- Settlement totals reconcile with the ledger.
+- Important financial actions are auditable.
+
+# 21. PROJECT STRUCTURE
+
+Create a clean project structure similar to:
+
+`loot-your-look/`
+- `frontend/`
+  - `src/components/`
+  - `src/pages/`
+  - `src/layouts/`
+  - `src/services/`
+  - `src/hooks/`
+  - `src/context/`
+  - `src/utils/`
+- `backend/`
+  - `src/main/java/.../controller/`
+  - `src/main/java/.../service/`
+  - `src/main/java/.../repository/`
+  - `src/main/java/.../entity/`
+  - `src/main/java/.../dto/`
+  - `src/main/java/.../security/`
+  - `src/main/java/.../config/`
+  - `src/main/resources/db/migration/`
+- `docs/`
+- `.env.example`
+- `README.md`
+
+Adjust the package structure as necessary, but keep the frontend and backend organized and maintainable.
+
+Include a README containing prerequisites, installation, configuration, migration, running, testing and deployment instructions.
+
+# 22. ENVIRONMENT CONFIGURATION
+
+Provide an `.env.example` or equivalent configuration template with placeholder values for:
+
+- Database URL, username and password.
+- Frontend API base URL.
+- Allowed frontend origin.
+- Email service configuration.
+- Payment provider credentials.
+- Image storage configuration.
+- Session or token secrets.
+- Other required production configuration.
+
+Never include real secrets in the template.
+
+Explain how to create local environment variables and configure production secrets securely.
+
+Provide separate development and production configuration profiles.
+
+# 23. DEPLOYMENT AND PUBLIC LAUNCH
+
+Prepare the website for deployment using suitable hosting services.
+
+Explain how to deploy:
+
+1. The React frontend.
+2. The Spring Boot backend.
+3. The MySQL database.
+4. Product image storage.
+5. Email and payment integrations.
+6. A custom domain.
+7. HTTPS certificates.
+8. Environment variables and secrets.
+9. Database migrations.
+10. Backups, monitoring and error logging.
+
+Include a deployment checklist and a rollback strategy.
+
+Verify that the production frontend can communicate with the production API and that the API can securely connect to MySQL.
+
+Do not assume that hosting, a custom domain, email delivery, storage or payment processing is free. Explain the available free tiers, usage limits and possible recurring costs. Do not promise uninterrupted free hosting.
+
+# 24. IMPLEMENTATION PLAN FOR BLACKBOX AI
+
+Build the website in manageable stages. Do not generate the entire system as one enormous, untested code dump.
+
+**Stage 1 — Foundation**
+- Set up the React frontend and Java 21 Spring Boot backend.
+- Configure Maven, MySQL and Flyway.
+- Create the base layout, navigation and public pages.
+- Confirm the application starts successfully.
+
+**Stage 2 — Database and security**
+- Create entities, migrations and repositories.
+- Implement registration, login, roles and authorization.
+- Create a secure initial admin setup process.
+- Test protected endpoints.
+
+**Stage 3 — Clothing catalog**
+- Create clothing categories, product variants, image references and inventory.
+- Implement catalog APIs, search and filters.
+- Enforce the clothing-only rule on the backend.
+- Test prohibited product submissions.
+
+**Stage 4 — Customer shopping**
+- Build product details, wishlist, cart, checkout and customer account pages.
+- Implement price calculation and inventory checks.
+- Add order creation and order history.
+
+**Stage 5 — Wholesaler portal**
+- Build wholesaler registration and approval.
+- Implement product submissions, inventory and order fulfillment.
+- Ensure wholesalers can access only their own records.
+
+**Stage 6 — Admin portal**
+- Build the dashboard, product approvals, wholesaler management, order management and reports.
+- Implement audit logs and administrative controls.
+
+**Stage 7 — Payments**
+- Integrate the selected payment gateway using test credentials.
+- Implement payment verification, webhooks, refunds and reconciliation.
+- Add settlement calculations and admin review.
+- Do not enable real payments until the test workflow passes.
+
+**Stage 8 — Testing and launch**
+- Run backend and frontend tests.
+- Test mobile responsiveness and accessibility.
+- Test security, database migrations and recovery.
+- Configure production services and deploy.
+- Verify the actual deployed website before announcing it as live.
+
+At the end of each stage, list the files created or changed, the commands to run, how to test the result, and any remaining work.
+
+# 25. RULES FOR GENERATING CODE
+
+Follow these instructions throughout development:
+
+1. Generate complete working files, not isolated fragments that cannot be connected.
+2. Do not leave core features as TODO comments or fake implementations.
+3. Do not hardcode production users, passwords, payments, stock or sales statistics.
+4. Do not simulate successful payments in production.
+5. Do not expose private environment variables in frontend code.
+6. Use DTOs rather than exposing sensitive database entities directly.
+7. Include error handling and input validation.
+8. Provide database migration scripts.
+9. Keep the customer, wholesaler and admin permissions separate.
+10. Keep every product-related feature restricted to clothing.
+11. Use consistent API response formats.
+12. Document external services that require account setup.
+13. When a build or test fails, diagnose the actual error and fix it before continuing.
+14. Do not claim a feature is complete until its essential workflow has been implemented and tested.
+15. Explain beginner-critical commands and configuration in simple language.
+16. If a requirement is ambiguous, state your assumption and make it configurable where practical.
+17. Never replace a working feature with a static mockup just to make the UI look complete.
+
+# 26. FINAL ACCEPTANCE CRITERIA
+
+The website is ready for a controlled public launch only when the following are verified:
+
+- The public website is accessible using the configured domain and HTTPS.
+- Customer registration, login, shopping cart and checkout work.
+- Customers can buy clothing products and view their orders.
+- Only approved clothing products are publicly visible.
+- Non-clothing products are rejected by backend validation.
+- Wholesaler registration and admin approval work.
+- Approved wholesalers can manage their own clothing inventory and fulfill assigned orders.
+- Admins can manage customers, wholesalers, clothing products, orders and relevant reports.
+- Payment status is verified through the selected payment provider.
+- Refunds, commissions and supplier settlements follow the documented business workflow.
+- Stock and order totals are consistent.
+- Security and role permissions have been tested.
+- Database backups and recovery procedures have been tested.
+- Legal and business configuration has been reviewed.
+- All essential production integrations have been configured and verified.
+- No critical errors remain in the release testing.
+
+A successful local build is not proof that the website is ready for real customers. Clearly identify any remaining manual setup, external approvals, legal reviews or production tests.
+
+# FINAL INSTRUCTION
+
+Start with Stage 1 and build **Loot Your Look**, a real clothing-only marketplace for India, using React, Java 21, Spring Boot 3, Maven, MySQL 8 and Flyway.
+
+The website must have three integrated portals: Customer, Wholesaler and Admin.
+
+The most important business rule is permanent: **ONLY CLOTHES CAN BE SOLD. NO SHOES, BAGS, JEWELLERY, ACCESSORIES, COSMETICS, ELECTRONICS OR OTHER PRODUCTS.**
+
+Build each stage, verify it, explain how to run it, and then proceed to the next stage. Prioritize security, correctness, maintainability and a successful real-world launch over merely generating a visually attractive website.
